@@ -1,0 +1,87 @@
+Launching Vulkan Application:
+- Layers overridden by "Validation" configuration.
+- Application: vkcube
+- Executable: /home/ewan/dev/rust/vulkan/target/debug/vulkan
+- Working Directory: /usr/bin
+- Command-line Arguments: --suppress_popups
+- Log file: /home/ewan/dev/rust/vulkan/vklogs.txt
+DEBUG:            Meta-layer VK_LAYER_LUNARG_override component layer VK_LAYER_KHRONOS_validation adding instance extension VK_EXT_debug_report
+DEBUG:            Meta-layer VK_LAYER_LUNARG_override component layer VK_LAYER_KHRONOS_validation adding instance extension VK_EXT_debug_utils
+DEBUG:            Meta-layer VK_LAYER_LUNARG_override component layer VK_LAYER_KHRONOS_validation adding instance extension VK_EXT_validation_features
+DEBUG:            Meta-layer VK_LAYER_LUNARG_override component layer VK_LAYER_KHRONOS_validation adding device extension VK_EXT_debug_marker
+DEBUG:            Meta-layer VK_LAYER_LUNARG_override component layer VK_LAYER_KHRONOS_validation adding device extension VK_EXT_validation_cache
+DEBUG:            Meta-layer VK_LAYER_LUNARG_override component layer VK_LAYER_KHRONOS_validation adding device extension VK_EXT_tooling_info
+DEBUG:            Meta-layer VK_LAYER_LUNARG_override component layer VK_LAYER_KHRONOS_validation adding instance extension VK_EXT_debug_report
+DEBUG:            Meta-layer VK_LAYER_LUNARG_override component layer VK_LAYER_KHRONOS_validation adding instance extension VK_EXT_debug_utils
+DEBUG:            Meta-layer VK_LAYER_LUNARG_override component layer VK_LAYER_KHRONOS_validation adding instance extension VK_EXT_validation_features
+DEBUG:            Meta-layer VK_LAYER_LUNARG_override component layer VK_LAYER_KHRONOS_validation adding device extension VK_EXT_debug_marker
+DEBUG:            Meta-layer VK_LAYER_LUNARG_override component layer VK_LAYER_KHRONOS_validation adding device extension VK_EXT_validation_cache
+DEBUG:            Meta-layer VK_LAYER_LUNARG_override component layer VK_LAYER_KHRONOS_validation adding device extension VK_EXT_tooling_info
+DEBUG:            Searching for ICD drivers named libGLX_nvidia.so.0
+DEBUG:            Searching for ICD drivers named libGLX_nvidia.so.0
+DEBUG:            Build ICD instance extension list
+DEBUG:            Meta-layer VK_LAYER_LUNARG_override component layer VK_LAYER_KHRONOS_validation adding instance extension VK_EXT_debug_report
+DEBUG:            Meta-layer VK_LAYER_LUNARG_override component layer VK_LAYER_KHRONOS_validation adding instance extension VK_EXT_debug_utils
+DEBUG:            Meta-layer VK_LAYER_LUNARG_override component layer VK_LAYER_KHRONOS_validation adding instance extension VK_EXT_validation_features
+DEBUG:            Meta-layer VK_LAYER_LUNARG_override component layer VK_LAYER_KHRONOS_validation adding device extension VK_EXT_debug_marker
+DEBUG:            Meta-layer VK_LAYER_LUNARG_override component layer VK_LAYER_KHRONOS_validation adding device extension VK_EXT_validation_cache
+DEBUG:            Meta-layer VK_LAYER_LUNARG_override component layer VK_LAYER_KHRONOS_validation adding device extension VK_EXT_tooling_info
+DEBUG:            Meta-layer VK_LAYER_LUNARG_override component layer VK_LAYER_KHRONOS_validation adding instance extension VK_EXT_debug_report
+DEBUG:            Meta-layer VK_LAYER_LUNARG_override component layer VK_LAYER_KHRONOS_validation adding instance extension VK_EXT_debug_utils
+DEBUG:            Meta-layer VK_LAYER_LUNARG_override component layer VK_LAYER_KHRONOS_validation adding instance extension VK_EXT_validation_features
+DEBUG:            Meta-layer VK_LAYER_LUNARG_override component layer VK_LAYER_KHRONOS_validation adding device extension VK_EXT_debug_marker
+DEBUG:            Meta-layer VK_LAYER_LUNARG_override component layer VK_LAYER_KHRONOS_validation adding device extension VK_EXT_validation_cache
+DEBUG:            Meta-layer VK_LAYER_LUNARG_override component layer VK_LAYER_KHRONOS_validation adding device extension VK_EXT_tooling_info
+DEBUG:            Searching for ICD drivers named libGLX_nvidia.so.0
+DEBUG:            Build ICD instance extension list
+DEBUG:            Meta-layer VK_LAYER_LUNARG_override component layer VK_LAYER_KHRONOS_validation adding instance extension VK_EXT_debug_report
+DEBUG:            Meta-layer VK_LAYER_LUNARG_override component layer VK_LAYER_KHRONOS_validation adding instance extension VK_EXT_debug_utils
+DEBUG:            Meta-layer VK_LAYER_LUNARG_override component layer VK_LAYER_KHRONOS_validation adding instance extension VK_EXT_validation_features
+DEBUG:            Meta-layer VK_LAYER_LUNARG_override component layer VK_LAYER_KHRONOS_validation adding device extension VK_EXT_debug_marker
+DEBUG:            Meta-layer VK_LAYER_LUNARG_override component layer VK_LAYER_KHRONOS_validation adding device extension VK_EXT_validation_cache
+DEBUG:            Meta-layer VK_LAYER_LUNARG_override component layer VK_LAYER_KHRONOS_validation adding device extension VK_EXT_tooling_info
+DEBUG:            Meta-layer VK_LAYER_LUNARG_override component layer VK_LAYER_KHRONOS_validation adding instance extension VK_EXT_debug_report
+DEBUG:            Meta-layer VK_LAYER_LUNARG_override component layer VK_LAYER_KHRONOS_validation adding instance extension VK_EXT_debug_utils
+DEBUG:            Meta-layer VK_LAYER_LUNARG_override component layer VK_LAYER_KHRONOS_validation adding instance extension VK_EXT_validation_features
+DEBUG:            Meta-layer VK_LAYER_LUNARG_override component layer VK_LAYER_KHRONOS_validation adding device extension VK_EXT_debug_marker
+DEBUG:            Meta-layer VK_LAYER_LUNARG_override component layer VK_LAYER_KHRONOS_validation adding device extension VK_EXT_validation_cache
+DEBUG:            Meta-layer VK_LAYER_LUNARG_override component layer VK_LAYER_KHRONOS_validation adding device extension VK_EXT_tooling_info
+DEBUG:            Searching for ICD drivers named libGLX_nvidia.so.0
+DEBUG:            Build ICD instance extension list
+DEBUG:            Loading layer library libVkLayer_khronos_validation.so
+DEBUG:            Build ICD instance extension list
+UNASSIGNED-khronos-validation-createinstance-status-message(INFO / SPEC): msgNum: -671457468 - Validation Information: [ UNASSIGNED-khronos-validation-createinstance-status-message ] Object 0: handle = 0x55ff8b1299e0, type = VK_OBJECT_TYPE_INSTANCE; | MessageID = 0xd7fa5f44 | Khronos Validation Layer Active:
+    Settings File: Found at /home/ewan/.local/share/vulkan/settings.d/vk_layer_settings.txt specified by VkConfig application override.
+    Current Enables: None.
+    Current Disables: VK_VALIDATION_FEATURE_DISABLE_THREAD_SAFETY_EXT.
+
+    Objects: 1
+        [0] 0x55ff8b1299e0, type: 1, name: NULL
+DEBUG:            Copying old device 0 into new device 0
+DEBUG:            loader_gpdpa_instance_terminator() unrecognized name vkCreateAndroidSurfaceKHR
+DEBUG:            loader_gpdpa_instance_terminator() unrecognized name vkCreateWin32SurfaceKHR
+DEBUG:            loader_gpdpa_instance_terminator() unrecognized name vkGetPhysicalDeviceWin32PresentationSupportKHR
+DEBUG:            loader_gpdpa_instance_terminator() unrecognized name vkCreateDirectFBSurfaceEXT
+DEBUG:            loader_gpdpa_instance_terminator() unrecognized name vkGetPhysicalDeviceDirectFBPresentationSupportEXT
+DEBUG:            loader_gpdpa_instance_terminator() unrecognized name vkGetPhysicalDeviceSurfacePresentModes2EXT
+DEBUG:            loader_gpdpa_instance_terminator() unrecognized name vkAcquireFullScreenExclusiveModeEXT
+DEBUG:            loader_gpdpa_instance_terminator() unrecognized name vkReleaseFullScreenExclusiveModeEXT
+DEBUG:            loader_gpdpa_instance_terminator() unrecognized name vkGetDeviceGroupSurfacePresentModes2EXT
+DEBUG:            loader_gpdpa_instance_terminator() unrecognized name vkCreateMetalSurfaceEXT
+DEBUG:            loader_gpdpa_instance_terminator() unrecognized name vkCreateImagePipeSurfaceFUCHSIA
+DEBUG:            loader_gpdpa_instance_terminator() unrecognized name vkCreateStreamDescriptorSurfaceGGP
+DEBUG:            loader_gpdpa_instance_terminator() unrecognized name vkCreateIOSSurfaceMVK
+DEBUG:            loader_gpdpa_instance_terminator() unrecognized name vkCreateMacOSSurfaceMVK
+DEBUG:            loader_gpdpa_instance_terminator() unrecognized name vkCreateViSurfaceNN
+DEBUG:            loader_gpdpa_instance_terminator() unrecognized name vkCreateScreenSurfaceQNX
+DEBUG:            loader_gpdpa_instance_terminator() unrecognized name vkGetPhysicalDeviceScreenPresentationSupportQNX
+DEBUG:            Copying old device 0 into new device 0
+DEBUG:            Copying old device 0 into new device 0
+DEBUG:            Loading layer library libVkLayer_khronos_validation.so
+thread 'main' panicked at 'assertion failed: `(left == right)`
+  left: `1`,
+ right: `12`', src/main.rs:141:9
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+DEBUG:            Unloading layer library libVkLayer_khronos_validation.so
+DEBUG:            Unloading layer library libVkLayer_khronos_validation.so
+Process terminated
