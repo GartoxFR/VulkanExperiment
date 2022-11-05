@@ -1611,6 +1611,8 @@ dependencies = [
  "png",
  "pretty_env_logger",
  "rand",
+ "serde",
+ "serde_json",
  "thiserror",
  "tobj",
  "vulkano",

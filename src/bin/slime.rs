@@ -1,9 +1,10 @@
 use core::time;
 use std::f32::consts::PI;
-use std::io::Cursor;
+use std::io::{Cursor, Write};
 use std::iter::repeat;
 use std::mem::size_of;
 use std::sync::Arc;
+use std::thread::current;
 use std::time::{SystemTime, UNIX_EPOCH};
 
 use log::{error, info};
@@ -46,6 +47,8 @@ use winit::event::{Event, WindowEvent};
 use winit::event_loop::{ControlFlow, EventLoop};
 use winit::window::{Window, WindowBuilder};
 
+use vulkan::settings::Settings;
+
 #[repr(C)]
 #[derive(Default, Copy, Clone, Zeroable, Pod)]
 struct Vertex {
@@ -58,6 +61,13 @@ struct Agent {
     position: [f32; 2],
     direction: [f32; 2],
     // velocity: f32,
+}
+
+#[repr(C)]
+#[derive(Debug, Default, Copy, Clone, Zeroable, Pod)]
+struct TimeData {
+    time: u32,
+    delta_time: f32,
 }
 
 static WIDTH: u32 = 1920;
@@ -116,8 +126,19 @@ fn main() -> Result<()> {
                 ..Default::default()
             },
             composite_alpha,
+            present_mode: PresentMode::Immediate,
             ..Default::default()
         },
+    )?;
+
+    let settings_buf = CpuAccessibleBuffer::from_data(
+        device.clone(),
+        BufferUsage {
+            uniform_buffer: true,
+            ..Default::default()
+        },
+        false,
+        Settings::get()?,
     )?;
 
     let disp_image = StorageImage::new(
@@ -153,7 +174,7 @@ fn main() -> Result<()> {
         Some(queue.queue_family_index()),
     )?;
 
-    let start = SystemTime::now();
+    let mut last_frame = SystemTime::now();
 
     let time_buf = CpuAccessibleBuffer::from_data(
         device.clone(),
@@ -162,7 +183,13 @@ fn main() -> Result<()> {
             ..Default::default()
         },
         false,
-        start.elapsed().unwrap().as_millis() as u32,
+        TimeData {
+            time: SystemTime::now()
+                .duration_since(UNIX_EPOCH)
+                .unwrap()
+                .as_millis() as u32,
+            delta_time: 0.0,
+        },
     )?;
 
     let mut rng = rand::thread_rng();
@@ -173,7 +200,7 @@ fn main() -> Result<()> {
             let radius = i as f32 / AGENTS as f32 * RADIUS;
             let pos_x = (WIDTH as f32 / 2.0) + angle.cos() * radius;
             let pos_y = (HEIGHT as f32 / 2.0) + angle.sin() * radius;
-            
+
             // let pos_x = rng.gen::<f32>() * RADIUS + WIDTH as f32 / 2.0;
             // let pos_y = rng.gen::<f32>() * RADIUS + HEIGHT as f32 / 2.0;
 
@@ -219,6 +246,7 @@ fn main() -> Result<()> {
             WriteDescriptorSet::image_view(1, dst_image_view.clone()),
             WriteDescriptorSet::image_view(2, blur_image_view.clone()),
             WriteDescriptorSet::buffer(3, time_buf.clone()),
+            WriteDescriptorSet::buffer(4, settings_buf.clone()),
         ],
     )?;
 
@@ -237,6 +265,8 @@ fn main() -> Result<()> {
         [
             WriteDescriptorSet::image_view(0, dst_image_view.clone()),
             WriteDescriptorSet::image_view(1, blur_image_view.clone()),
+            WriteDescriptorSet::buffer(2, settings_buf.clone()),
+            WriteDescriptorSet::buffer(3, time_buf.clone()),
         ],
     )?;
 
@@ -432,7 +462,18 @@ fn main() -> Result<()> {
 
             {
                 let mut t = time_buf.write().unwrap();
-                *t = start.elapsed().unwrap().as_millis() as u32;
+                t.time = SystemTime::now()
+                    .duration_since(UNIX_EPOCH)
+                    .unwrap()
+                    .as_millis() as u32;
+
+                let current_frame = SystemTime::now();
+                let elapsed = current_frame
+                    .duration_since(last_frame)
+                    .unwrap()
+                    .as_secs_f32();
+                last_frame = current_frame;
+                t.delta_time = elapsed;
             }
 
             let execution = sync::now(device.clone())

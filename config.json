@@ -1,0 +1,9 @@
+{
+  "diffuse_rate": 10,
+  "evaporation_rate": 1,
+  "velocity": 50,
+  "turn_speed": 50,
+  "sensor_size": 4,
+  "sensor_angle_degrees": 30,
+  "sensor_distance": 15
+}

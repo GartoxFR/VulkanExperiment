@@ -1,11 +1,13 @@
 use std::sync::Arc;
 
-use log::{info};
+use log::info;
 use vulkano::device::{Device, DeviceCreateInfo, Queue, QueueCreateInfo};
 use vulkano::VulkanLibrary;
 
 use anyhow::{Ok, Result};
 use vulkano::instance::{Instance, InstanceCreateInfo};
+
+pub mod settings;
 
 pub fn init_vulkan() -> Result<(Arc<Device>, Arc<Queue>)> {
     let library = VulkanLibrary::new().expect("No local Vulkan library/DLL");

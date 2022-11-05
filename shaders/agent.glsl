@@ -17,7 +17,17 @@ layout(set = 0, binding = 1, rgba8) uniform writeonly image2D dst;
 layout(set = 0, binding = 2, rgba8) uniform readonly image2D src;
 layout(set = 0, binding = 3) uniform Data{
     int time;
+    float deltaTime;
 } timeBuf;
+layout(set = 0, binding = 4) uniform Settings {
+    float diffuseRate;
+    float evaporationRate;
+    float velocity;
+    float turnSpeed;
+    int sensorSize;
+    float sensorAngleDegrees;
+    float sensorDistance;
+} settings;
 
 float scaleToRange01(uint state)
 {
@@ -41,7 +51,7 @@ float sense(Agent agent, float angle, int sensorSize, float sensorAngleOffset) {
     vec2 sensorDir = vec2(cos(sensorAngle), sin(sensorAngle));
 
 
-	vec2 sensorPos = agent.position + sensorDir * 15;
+	vec2 sensorPos = agent.position + sensorDir * settings.sensorDistance;
 	int sensorCentreX = int(sensorPos.x);
 	int sensorCentreY = int(sensorPos.y);
 
@@ -61,29 +71,26 @@ void main() {
     uint idx = gl_GlobalInvocationID.x;
     vec2 size = imageSize(dst);
 
-    float turnSpeed = 1;
-
     float randomSteer = hash(int(buf.agents[idx].position.y * size.x + buf.agents[idx].position.x + timeBuf.time));
 
     float angle = atan(buf.agents[idx].direction.y, buf.agents[idx].direction.x);
-    float sensorAngleOffset = 30 * (3.1415 / 180);
-    int sensorSize = 4;
-    float weightForward = sense(buf.agents[idx], angle, sensorSize, 0);
-    float weightLeft = sense(buf.agents[idx], angle, sensorSize, -sensorAngleOffset);
-    float weightRight = sense(buf.agents[idx], angle, sensorSize, sensorAngleOffset);
+    float sensorAngleOffset = settings.sensorAngleDegrees * (3.1415 / 180);
+    float weightForward = sense(buf.agents[idx], angle, settings.sensorSize, 0);
+    float weightLeft = sense(buf.agents[idx], angle, settings.sensorSize, -sensorAngleOffset);
+    float weightRight = sense(buf.agents[idx], angle, settings.sensorSize, sensorAngleOffset);
 
     if (weightForward >= weightLeft && weightForward >= weightRight) {
-        angle += (randomSteer - 0.5) * 2 * turnSpeed;
+        angle += (randomSteer - 0.5) * 2 * settings.turnSpeed * timeBuf.deltaTime;
 
     } else if(weightLeft >= weightRight) {
-        angle -= randomSteer * turnSpeed;
+        angle -= randomSteer * settings.turnSpeed * timeBuf.deltaTime;
     } else {
-        angle += randomSteer * turnSpeed;
+        angle += randomSteer * settings.turnSpeed * timeBuf.deltaTime;
     }
 
     buf.agents[idx].direction = vec2(cos(angle), sin(angle));
 
-    vec2 newPos = buf.agents[idx].position + buf.agents[idx].direction;
+    vec2 newPos = buf.agents[idx].position + buf.agents[idx].direction * settings.velocity * timeBuf.deltaTime;
     if (newPos.x < 0 || newPos.x >= size.x) {
         buf.agents[idx].direction.x *= -1;
         newPos.x = newPos.x < 0 ? 0 : size.x;
