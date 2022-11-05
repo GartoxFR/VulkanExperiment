@@ -74,7 +74,7 @@ static WIDTH: u32 = 1920;
 static HEIGHT: u32 = 1080;
 static AGENTS: u32 = 1024 * 500;
 static STEP_PER_FRAME: u32 = 1;
-static RADIUS: f32 = HEIGHT as f32 / 20.0;
+static RADIUS: f32 = HEIGHT as f32 / 3.0;
 
 vulkano::impl_vertex!(Vertex, position);
 

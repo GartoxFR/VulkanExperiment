@@ -41,7 +41,7 @@ void main() {
 
     vec4 blurResult = sum / n;
 
-    vec4 diffusedValue = mix(originalValue, blurResult, settings.diffuseRate * timeBuf.deltaTime);
+    vec4 diffusedValue = mix(originalValue, blurResult, min(settings.diffuseRate * timeBuf.deltaTime, 1.0));
 
     imageStore(dst, pos, vec4(max(diffusedValue.rgb - settings.evaporationRate * timeBuf.deltaTime, 0), 1.0));
 }
